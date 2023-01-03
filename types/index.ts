@@ -1,7 +1,10 @@
-export type Post = {
-  id: string;
+export type PostMetaData = {
   title: string;
   date: string;
   thumbnail: string;
-  content: string;
 };
+
+export type Post = {
+  id: string;
+  blogContentHTML: string;
+} & PostMetaData;
