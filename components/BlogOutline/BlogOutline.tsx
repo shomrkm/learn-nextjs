@@ -6,24 +6,26 @@ import styles from '../../styles/Home.module.css';
 import utilStyle from '../../styles/utils.module.css';
 
 interface Props {
+  id: string;
   title: string;
   date: string;
   thumbnail: string;
 }
 
-export const BlogOutline = ({ title, date, thumbnail }: Props) => {
+export const BlogOutline = ({ id, title, date, thumbnail }: Props) => {
   return (
-    <article>
-      <Link href='/'>
+    <article key={id}>
+      <Link href={`/posts/${id}`}>
         <Image
           src={thumbnail}
           alt=''
           width={480}
           height={320}
+          priority={true}
           className={styles.thumbnailImage}
         />
       </Link>
-      <Link href='' className={utilStyle.boldText}>
+      <Link href={`/posts/${id}`} className={utilStyle.boldText}>
         {title}
       </Link>
       <br />

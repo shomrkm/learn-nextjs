@@ -1,12 +1,38 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import {
+  GetStaticProps,
+  InferGetStaticPropsType,
+  // GetServerSideProps,
+} from 'next';
 
 import styles from '../styles/Home.module.css';
 import utilStyle from '../styles/utils.module.css';
 import { Layout } from '../components/Layout';
 import { BlogOutline } from '../components/BlogOutline';
+import { getPostsData } from '../lib/post';
+import { Post } from '../types';
 
-export default function Home() {
+// SSG の場合
+export const getStaticProps: GetStaticProps = async () => {
+  const allPostsData = getPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
+};
+
+// SSR の場合
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   return {
+//     props: {
+//       // コンポーネントへ渡すための props
+//     },
+//   };
+// };
+
+export default function Home({
+  allPostsData,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout>
       <section className={utilStyle.headingMd}>
@@ -15,26 +41,15 @@ export default function Home() {
       <section className={`${utilStyle.headingMd} ${utilStyle.padding1px}`}>
         <h2 className={utilStyle.headingLg}>📝エンジニアのブログ</h2>
         <div className={styles.grid}>
-          <BlogOutline
-            title='SSGとSSRの使い分けの場面はいつなのか'
-            date='January 02, 2023'
-            thumbnail='/images/thumbnail01.jpg'
-          />
-          <BlogOutline
-            title='SSGとSSRの使い分けの場面はいつなのか'
-            date='January 02, 2023'
-            thumbnail='/images/thumbnail01.jpg'
-          />
-          <BlogOutline
-            title='SSGとSSRの使い分けの場面はいつなのか'
-            date='January 02, 2023'
-            thumbnail='/images/thumbnail01.jpg'
-          />
-          <BlogOutline
-            title='SSGとSSRの使い分けの場面はいつなのか'
-            date='January 02, 2023'
-            thumbnail='/images/thumbnail01.jpg'
-          />
+          {allPostsData.map((post: Post) => (
+            <BlogOutline
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              date={post.date}
+              thumbnail={post.thumbnail}
+            />
+          ))}
         </div>
       </section>
     </Layout>
