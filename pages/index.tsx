@@ -34,7 +34,7 @@ export default function Home({
   allPostsData,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <Layout>
+    <Layout home>
       <section className={utilStyles.headingMd}>
         <p>私は shomrkm です。好きな言語は TypeScript です</p>
       </section>
