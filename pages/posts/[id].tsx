@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 
+import utilStyles from '../../styles/utils.module.css';
 import { Layout } from '../../components/Layout';
 import { getAllPostIds, getPostData } from '../../lib/post';
 import { Post as BlogPost } from '../../types';
@@ -35,11 +36,12 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
 const BlogPost: FC<Props> = ({ postData }) => {
   return (
     <Layout>
-      {postData.title}
-      <br />
-      {postData.date}
-      <br />
-      {postData.blogContentHTML}
+      <article>
+        <h1 className={utilStyles.headingX1}>{postData.title}</h1>
+        <div className={utilStyles.lightText}>{postData.date}</div>
+        {/* NOTE: You should sanitize HTML for product environment */}
+        <div dangerouslySetInnerHTML={{ __html: postData.blogContentHTML }} />
+      </article>
     </Layout>
   );
 };

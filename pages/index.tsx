@@ -5,7 +5,7 @@ import {
 } from 'next';
 
 import styles from '../styles/Home.module.css';
-import utilStyle from '../styles/utils.module.css';
+import utilStyles from '../styles/utils.module.css';
 import { Layout } from '../components/Layout';
 import { BlogOutline } from '../components/BlogOutline';
 import { getPostsData } from '../lib/post';
@@ -35,11 +35,11 @@ export default function Home({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout>
-      <section className={utilStyle.headingMd}>
+      <section className={utilStyles.headingMd}>
         <p>私は shomrkm です。好きな言語は TypeScript です</p>
       </section>
-      <section className={`${utilStyle.headingMd} ${utilStyle.padding1px}`}>
-        <h2 className={utilStyle.headingLg}>📝エンジニアのブログ</h2>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>📝エンジニアのブログ</h2>
         <div className={styles.grid}>
           {allPostsData.map((post: Post) => (
             <BlogOutline
