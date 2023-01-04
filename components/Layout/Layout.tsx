@@ -1,11 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './layout.module.css';
 import utilStyles from '../../styles/utils.module.css';
 
 const NAME = 'Shomrkm Code';
-const SITE_TITLE = 'Next.js blog';
+export const SITE_TITLE = 'Next.js blog';
 
 type Props = {
   children: React.ReactNode;
@@ -44,6 +45,11 @@ export const Layout = ({ children, home }: Props) => {
         )}
       </header>
       <main>{children}</main>
+      {!home && (
+        <div>
+          <Link href='/'>→ ホームへ戻る</Link>
+        </div>
+      )}
     </div>
   );
 };
