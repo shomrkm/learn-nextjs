@@ -3,10 +3,11 @@ import {
   InferGetStaticPropsType,
   // GetServerSideProps,
 } from 'next';
+import Head from 'next/head';
 
 import styles from '../styles/Home.module.css';
 import utilStyles from '../styles/utils.module.css';
-import { Layout } from '../components/Layout';
+import { Layout, SITE_TITLE } from '../components/Layout';
 import { BlogOutline } from '../components/BlogOutline';
 import { getPostsData } from '../lib/post';
 import { Post } from '../types';
@@ -35,6 +36,9 @@ export default function Home({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout home>
+      <Head>
+        <title>{SITE_TITLE}</title>
+      </Head>
       <section className={utilStyles.headingMd}>
         <p>私は shomrkm です。好きな言語は TypeScript です</p>
       </section>

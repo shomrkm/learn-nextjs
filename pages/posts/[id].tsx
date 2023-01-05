@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
 import { ParsedUrlQuery } from 'querystring';
 
 import utilStyles from '../../styles/utils.module.css';
@@ -36,6 +37,9 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
 const BlogPost: FC<Props> = ({ postData }) => {
   return (
     <Layout>
+      <Head>
+        <title>{postData.title}</title>
+      </Head>
       <article>
         <h1 className={utilStyles.headingX1}>{postData.title}</h1>
         <div className={utilStyles.lightText}>{postData.date}</div>
