@@ -40,7 +40,7 @@ export default function Home({
         <title>{SITE_TITLE}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>私は shomrkm です。好きな言語は TypeScript です</p>
+        <p>私は shomrkm です。好きな言語は TypeScript です。</p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>📝エンジニアのブログ</h2>
